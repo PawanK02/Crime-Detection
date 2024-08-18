@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/indexstop.css') }}">-->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
+ <title>CRIMINAL DETECTION</title>
+ 
+<style>
+body{
+    background: rgb(1,12,18);
+background: linear-gradient(90deg, rgba(1,12,18,1) 0%, rgba(19,40,71,1) 50%, rgba(1,12,18,1) 100%);
+}
+.container {
+    margin-top: 100px;
+    width: 60%;
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+}
+.col-lg-offset-2 {
+    margin-left: 16.66666667%;
+}
+.col-lg-8 {
+    width: 66.66666667%;
+}
+.btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.poli, .pol {
+    margin-top: 20px;
+}
+.webcam {
+    margin-top: 20px;
+    width: 100%;
+    height: 400px; /* Define the height of the empty box */
+    border: 2px dashed #ccc; /* Dashed border to indicate the area */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+}
+.webcam img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.navbar {
+    position: fixed; /* Make the navbar fixed */
+    top: 0; /* Position it at the top of the viewport */
+    width: 100%; /* Make it span the entire width of the viewport */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgb(1,12,18);
+background: linear-gradient(90deg, rgba(1,12,18,1) 0%, rgba(19,40,71,1) 50%, rgba(1,12,18,1) 100%);
+    color: #fff;
+    padding: 10px;
+    border-bottom: 3px solid #ffffff; /* Optional bottom border */
+  }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            font-family: sedan-regular;
+            font-size: 25px
+        }
+        .navbar-brand:hover{
+            color:#fff
+        }
+        .navbar-brand i {
+            margin-left: 10px;
+            color: #3778d2;
+        }
+        
+        .nav-item {
+            margin: 0 15px;
+        }
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: large;
+            
+        }
+        .nav-link:hover {
+            color: #ccc;
+        }
+        .nav-link.active {
+            color: #3778d2;
+        }
+        .form-inline {
+            display: flex;
+            align-items: center;
+        }
+        .form-inline input[type="text"] {
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .form-inline input[type="submit"] {
+            background-color: #3778d2;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .form-control{
+            height: 30px;
+            align-self: center;
+        }
+        .btnnav{
+            border: 0px;
+            background: rgba(0, 0, 0, 0);;
+            color: #fff;
+            font-size: 18px;
+
+        }
+        .btnnav:hover{
+            color: #ccc;
+        }
+        .important {
+      font-weight: bold; /* Highlight important features */
+    }
+    .btnn{
+        background-color: #37dadd;
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 5px;
+        border: solid 2px;
+        border-radius: 3px;
+        border-color: #ffffff;
+        color: #fff;
+    }
+        
+</style>
+ 
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            CRIMINAL DETECTION &nbsp;&nbsp;<i class="fa-solid fa-user-secret fa-lg"></i>
+        </div>
+        <a class="nav-link "  href="#webcamContainer" id="myLink">Detect</a>
+        <form id="actionForm" method="post" enctype="multipart/form-data" style="padding: 0px;margin-left: -150px;">     
+        <button type="button" class="btnnav " onclick="submitForm('/up')">Manually Upload</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </form>
+          
+        
+        <div class="form-inline">
+            <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #ffffff;"></i>
+            <form class="srch d-flex" action="/search" method="get">
+                <input type="text" name="search" id="search" placeholder="Enter criminal name" class="form-control">
+                <input type="submit" value="Enter" style="height: 30px; width: 70px; display: flex; align-items: center; justify-content: center; background-color: #3778d2; color: #fff; border: none; cursor: pointer; border-radius: 3px; ">
+            </form>
+        </div>
+    </nav>
+<div style="margin-top: 180px; color: #ffffff; margin-left: 50px;margin-right: 80px;">
+   <p style="font-size: 20px;">
+    Welcome to the Criminal Detection Website, a sophisticated and user-friendly platform designed to aid law enforcement agencies in identifying and tracking criminals. Our website leverages advanced technologies to provide real-time detection using live camera feeds, manual image uploads, and the addition of new criminal profiles. This tool aims to enhance public safety by offering reliable and efficient criminal detection methods.
+  </p>
+  <br><br>
+
+  <h2>Explanation of Main Features</h2><br>
+  <ul>
+    <li>
+      <b>Detect Using Camera</b><br>
+      The "Detect through camera" feature utilizes a live camera feed to detect criminals in real-time. By clicking the "Detect through camera" button, users can activate their device's camera, which will start streaming video to the platform. The system then processes the video feed, analyzing facial features and matching them against a database of known criminals. This feature is particularly useful in public surveillance and high-security areas, allowing for immediate action if a criminal is detected.
+    </li>
+    <li>
+      <b>Manually Upload Image</b><br>
+      The "Upload image" feature allows users to manually upload images for criminal detection. This is particularly useful in scenarios where an image is captured offline or obtained from an external source. Users can simply click the "Upload image" button and select the image file from their device. The uploaded image is then processed by the system, which scans and compares the facial features in the image against the criminal database. This feature provides flexibility in adding new data for criminal detection.
+    </li>
+    <li>
+      <b>Enter New Criminal <span class="important">(Authorized Users Only)</span></b><br>
+      The "NEW CRIMINAL" feature is designed for law enforcement officials to add new criminal profiles to the database. This option ensures that the system is continuously updated with the latest information on known criminals. By clicking the "NEW CRIMINAL" button, authorized users can upload images and enter relevant details about new suspects or convicted criminals. This helps in keeping the database current and improves the accuracy and effectiveness of the detection system.
+    </li>
+  </ul>
+  <br><br>
+  <h2>How It Works</h2>
+  <p><br>
+    The Criminal Detection Website offers three main functionalities:
+  </p>
+  <ul>
+    <li><b>Live Camera Detection:</b> Activates the camera, processes the live feed, and matches detected faces against the criminal database.</li>
+    <li><b>Manual Image Upload:</b> Allows users to upload an image file for facial recognition and comparison with the criminal database.</li>
+    <li><b>Adding New Criminals:</b> Enables authorized users to update the criminal database with new profiles, ensuring the system remains up-to-date.</li>
+  </ul>
+
+  <p>
+    This website is a powerful tool for enhancing security and aiding in the swift detection and apprehension of criminals, providing law enforcement with the technology needed to keep communities safe.
+  </p>
+</div><br>
+    <hr style="border: solid 1px #ffffff; margin: 10px 0;opacity: 1;">
+  
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <form id="actionForm" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <center><span class="text-center" style="color: #fff; font-size: 30px;">DETECT USING CAMERA</span></center>
+      
+        <div class="webcam" id="webcamContainer">
+          <span id="webcamText">Webcam feed will appear here</span>
+        </div>
+      
+        <br>
+      
+        <div class="text-center">
+          <button type="button" class="btnn" onclick="startCamera()">Detect through camera</button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="button" class="btnn" onclick="stopCamera();submitForm('/stop')">Stop</button>
+        </div>
+      </div>
+      <br><br><br>
+    
+</form>
+
+
+  <script>
+      function startCamera() {
+          var webcamContainer = document.getElementById('webcamContainer');
+          webcamContainer.innerHTML = '<img src="{{ url_for("video_capture") }}" alt="Webcam Feed">';
+      }
+
+      function stopCamera() {
+          var webcamContainer = document.getElementById('webcamContainer');
+          webcamContainer.innerHTML = '<span id="webcamText">Webcam feed will appear here</span>';
+      }
+
+      function submitForm(actionUrl) {
+          var form = document.getElementById('actionForm');
+          form.action = actionUrl;
+          form.submit();
+      }
+
+
+
+     // Function to handle link click and perform instant jump
+  function instantJump(e) {
+    e.preventDefault(); // Prevent default link behavior (jumping)
+    const targetElement = document.getElementById(e.target.hash.slice(1)); // Get target element
+    targetElement.scrollIntoView({ behavior: "instant" }); // Instantly scroll to target element
+  }
+
+  // Attach event listener to the link
+  const myLink = document.getElementById('myLink');
+  myLink.addEventListener('click', instantJump);
+  </script>
+
+   
+</script>
+</body>
+</html>
